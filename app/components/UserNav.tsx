@@ -1,8 +1,8 @@
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 import { MenuIcon } from "lucide-react";
 import {RegisterLink, LoginLink, LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-
+import Link from "next/link";
 export default async function UserNav() {
   const {getUser} = getKindeServerSession()
   const user = await  getUser();
@@ -17,7 +17,35 @@ export default async function UserNav() {
         <DropdownMenuContent align="end" className="w-[200px]">
          {user ? (
           <>
-          <DropdownMenuItem><LogoutLink >Logout</LogoutLink></DropdownMenuItem>
+          <DropdownMenuItem>
+             <form className="w-full">
+              <button type="submit" className="w-full text-start">
+                GloBeNest Your Home
+              </button>
+             </form>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+              <Link href="/my-homes" className="w-full">
+                My Listings
+              </Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+              <Link href="/favorites" className="w-full">
+                My Favourites
+              </Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+              <Link href="/reservations" className="w-full">
+                My Reservations
+              </Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <LogoutLink className="w-full">Logout</LogoutLink>
+          </DropdownMenuItem>
           </>
          ):(
           <>
