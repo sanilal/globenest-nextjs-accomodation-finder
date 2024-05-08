@@ -1,7 +1,7 @@
 "use server"
 
 import { redirect } from "next/navigation";
-import prisma from "@/lib/db";
+import prisma from "./lib/db";
 
 export async function createGlobeNestHome({ userId }: { userId: string }) {
  
